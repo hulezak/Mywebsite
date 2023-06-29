@@ -1,0 +1,147 @@
+<body>
+  <h1>watch movie yo </h1>
+  <br>
+   <h2>Shazam </h2>
+  <section id="description">
+    
+    <button class="search-btn">
+      haile
+    </button>
+    <input type="text" id="search" >
+            
+  <br>
+  
+    IMDb: 8
+    <br>
+
+    
+A boy is given the ability to become an adult superhero in times of need with a single magic word.
+<br>
+
+Genre: Action, Adventure, Comedy, Fantasy
+       <br>
+       <br>
+Actor: Zachary Levi, Asher Angel, Jack Dylan Grazer, Mark Strong, Djimon Hounsou, Grace Fulton, Faithe Herman, Ian Chen, Jovan Armand, Cooper Andrews
+ <br>
+  <br>
+Director: David F Sandberg
+ <br>
+  <br>
+Country: United States
+ <br>
+  <br>
+Duration: 132 min
+ <br>
+   <br>
+Quality: HD
+  <br>
+  <br>
+Release: 2019
+
+  </section>
+<div id="movie">
+  
+<div class="ratio ratio-21x9"><iframe id="playit" allowfullscreen="" src="https://moplay.org/watch?v=gAAAAABkA5gw-9B4cD0OiyythU5EZnhiFlcklZOD41UjSb7731BiReNrgpfc_iywQEqF02BpmFBx6IWsg0_iaxkQCJprgflA1jM4ZFM_74WnJ4INfUE7Bf5RP-dwwQ5Cp2vqR0vCTPARa3OJRLmW-XurF2R2038ktg=="></iframe></div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<style>
+button {
+  background-color:blue;
+  color: White;
+}
+  *{
+  
+    margin: 0;
+    background-color:rgb(30, 33, 41);
+ 
+  }
+  #description{
+    color: white;
+    text-decoration: none;
+    margin: 20px;
+  }
+  h2, h1 {
+    color: #0022ff;
+    text-align: center;
+  }
+  
+  iframe {
+    border: solid 3px white;
+    margin-right:auto;
+    margin-left: auto;
+  display: flex;
+    width: 90%; 
+    height: 200px;
+  }
+  @media(min-width:778px) {
+  #description{
+    width: 60%;
+    background-color: red;
+    margin-left:0px;
+    display: flex;
+  }
+  h2 {
+    margin-right: 500px;
+  }
+
+    iframe{
+      width: 90%;
+     
+      height:400px;}
+    
+    }
+  
+</style>
+
+<script>
+
+
+document.getElementsByClassName("search-btn")[0].onclick = function() { //var sI = document.getElementById("search").value;
+location.href ="Search bar.html"
+
+function search_animal() { 
+
+    let input = document.getElementById('search').value 
+
+    input=input.toLowerCase(); 
+
+    let x = document.getElementsByClassName('animals'); 
+
+      
+
+    for (i = 0; i < x.length; i++) {  
+
+        if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+
+            x[i].style.display="none"; 
+
+        } 
+
+        else { 
+
+            x[i].style.display="list-item";                  
+
+        } 
+
+    } 
+} 
+  
+   
+// call the search function here and redirect to the other htnl file  where you display results.
+
+  
+};
+
+</script>
+
+</body>

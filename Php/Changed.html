@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Latest Movies</title>
+</head>
+<body>
+  <h1>Latest Movies</h1>
+  <div id="movies"></div>
+  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const apiKey = '166b8666';
+
+    // Use OMDB API to fetch latest movie
+    $.ajax({
+    //change coco to the movie you want
+    url: `http://www.omdbapi.com/?apikey=${apiKey}&s=coco`,
+      dataType: 'json',
+      success: function(data) {
+        // Extract the first movie from the list and get its title
+        const movieName = data.Search[0].Title;
+
+        // UUse the movie name and API key to construct the API endpoint URL
+        const apiEndpoint = `http://www.omdbapi.com/?apikey=${apiKey}&s=${movieName}`;
+
+        // Perform the API request and display the results
+        $.ajax({
+          url: apiEndpoint,
+          dataType: 'json',
+          success: function(data) {
+            // Extract the movies from the returned data
+            const movies = data.Search;
+
+            // Display each movie's title and image
+            $.each(movies, function(i, movie) {
+              $('#movies').append(`<div><img src="${movie.Poster}" alt="${movie.Title}"><h2>${movie.Title}</h2></div>`);
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

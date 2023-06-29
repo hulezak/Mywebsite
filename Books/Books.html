@@ -1,0 +1,222 @@
+<!DOCtype html>
+<html lang="en">
+<head>
+  <title>BOOKS STORE </title>
+  
+<link rel="stylesheet" href="Books.css"
+
+</head>
+<body>
+  
+
+  <main>
+
+<section id="navbar">
+<div class="topnav" id="myTopnav">
+  <a href="BooksHome.html" class="active">Home</a>
+  <a href="books.html">Books</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()"> 
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg>
+   </a>
+</div>
+
+
+ </section>
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<div class="Newcoming">
+  
+  <img id="home" src="Img1/w1.jpg">
+
+  
+</div>
+      
+
+ <div id="water">
+   <div> 
+ <img src="img1/w2.jpg">
+ <section>  <span id="oldprice">$35</span> 
+<span>$25</span> </section>
+<button onclick="buy()">Order Us</button>
+ 
+   
+   </div>
+ </div>
+ 
+
+    <!-- books main list-->
+   <h2>New realized books</h2>
+<hr>
+    <section class="mainbook">
+ 
+      <div class="bookslist">
+        <a href="" target="_blank">
+          <img src="img1/g91.jpeg">
+        </a              
+
+        <a href="img1/b1.jpg" download>
+          <img class="d" src="img1/Download.png">
+        </a>
+      </div>
+
+
+      <div class="bookslist">
+        <a href="" target="_blank">
+          <img src="img1/g95.jpg">
+        </a>
+        <a href="img1/b2.jpg" download>
+          <img class="d" src="img1/Download.png">
+        </a>
+      </div>
+
+      <div class="bookslist">
+        <a href="" target="_blank">
+          <img src="img1/g93.jpeg">
+        </a       <a href="img1/b3.jpg" download>
+        <img class="d" src="img1/Download.png">
+      </a>
+
+    </div>
+
+    <div class="bookslist">
+      <a href="" target="_blank">
+        <img src="img1/g94.jpeg">
+        <a href="img1/b4.jpg" download>
+          <img class="d" src="img1/Download.png">
+        </a>
+      </a>
+    </div> 
+
+    <div class="bookslist">
+      <a href="" target="_blank">
+        <img src="img1/g95.jpg">
+      </a>
+      <a href="img1/b5.jpg" download>
+        <img class="d" src="img1/Download.png">
+      </a>
+    </div>
+
+    <div class="bookslist">
+      <a href="" target="_blank">
+        <img src="img1/g96.jpg">
+      </a>
+      <a href="img1/b6.jpg" download>
+        <img class="d" src="img1/Download.png">
+      </a>
+    </div>
+
+    <div class="bookslist">
+      <a href="" target="_blank">
+        <img src="img1/b7.jpg">
+      </a>
+      <a href="img1/b7.jpg" download>
+        <img class="d" src="img1/Download.png">
+      </a>
+    </div>
+    
+        <div class="bookslist">
+      <a href="" target="_blank">
+        <img src="img1/b5.jpg">
+      </a>
+      <a href="img1/b5.jpg" download> download<img class="d" src="img1/Download.png">
+      </a>
+    </div>
+
+
+
+    <div class="bookslist">
+      <a href="" target="_blank">
+        <img src="img1/b6.jpg">
+      </a>
+      <a href="img1/b6.jpg" download>
+        <img class="d" src="img1/Download.png">
+      </a>
+    </div>
+    
+    
+    
+    </div>
+    
+
+
+  </section>
+
+</main>
+
+<div id = "clock">
+  
+  
+</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+currentTime();
+  
+setInterval(currentTime, 1000);
+    
+
+function currentTime() {
+  
+var d = new Date();
+var time = d.toLocaleTimeString()
+  
+  // 2nd option same time
+  /*let date = new Date(); 
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  let session = "AM";
+
+ if(hh == 0){
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
+
+   hh = (hh < 10) ? "0" + hh : hh;
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss; 
+    
+   let time = hh + ":" + mm + ":" + ss + " " + session;
+*/
+  document.getElementById("clock").innerText = time;
+  
+
+
+
+
+} 
+
+  
+
+</script>
+</body>
+
+</html>

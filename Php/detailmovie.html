@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+ <html>
+  
+<head>
+	<title>Movie Details</title>
+	
+	<style>
+		.movie-details {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding-top: 50px;
+		}
+		
+		h1 {
+			font-size: 36px;
+			margin-bottom: 20px;
+		}
+
+		p {
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+
+		img {
+			height: 400px;
+			width: auto;
+			margin-bottom: 20px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+			border-radius: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="movie-details"></div>
+
+	<script>
+		let queryString = window.location.search;
+		let urlParams = new URLSearchParams(queryString);
+    let movieId = urlParams.get('movieId');
+
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=633e13feb64782177da6da3e1f6b1dc2&append_to_response=credits`)
+    .then(response => response.json())
+    .then(movie => {
+        let movieDetailsContainer = document.querySelector('.movie-details');
+
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = movie.title;
+        movieDetailsContainer.appendChild(titleElement);
+
+        let posterPath = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+        let posterImage = document.createElement('img');
+        posterImage.src = posterPath;
+        movieDetailsContainer.appendChild(posterImage);
+
+        let castElement = document.createElement('p');
+        let castString = "Cast: ";
+        movie.credits.cast.forEach(castMember => {
+            castString += `${castMember.name}, `;
+        });
+        castString = castString.slice(0, -2);
+        castElement.innerText = castString;
+        movieDetailsContainer.appendChild(castElement);
+
+        let directorElement = document.createElement('p');
+        let directorString = "Director: ";
+        movie.credits.crew.forEach(crewMember => {
+            if (crewMember.job === "Director") {
+                directorString += `${crewMember.name}, `;
+            }
+        });
+        directorString = directorString.slice(0, -2);
+        directorElement.innerText = directorString;
+        movieDetailsContainer.appendChild(directorElement);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+	</script>
+</body> 
+</html> 

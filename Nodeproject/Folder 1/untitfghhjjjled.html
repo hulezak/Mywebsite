@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Search App</title>
+    <style>
+      .movie-item {
+        width: 200px;
+        height: 300px;
+        background-size: cover;
+        border: 1px solid gray;
+        margin: 5px;
+        float: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Movie Search App</h1>
+    <input type="text" id="search-input" placeholder="Enter movie name">
+    <button onclick="handleSearch()">Search</button>
+    <div id="movies-list"></div>
+
+    <script>
+      const API_URL = "https://api.themoviedb.org/3/";
+      const IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+      const API_KEY = "633e13feb64782177da6da3e1f6b1dc2";
+
+      function handleSearch() {
+        const query = document.getElementById("search-input").value;
+        searchMovies(query, "movie");
+      }
+
+      function searchMovies(query, searchType) {
+        const SEARCH_URL = `${API_URL}search/${searchType}?api_key=${API_KEY}&query=${query}`;
+
+        fetch(SEARCH_URL)
+          .then((response) => response.json())
+          .then((data) => {
+            const moviesList = document.querySelector("#movies-list");
+            moviesList.innerHTML = "";
+
+            if (data.total_results === 0) {
+              throw "No movies found";
+            }
+
+            data.results.forEach((movie) => {
+              const movieElement = document.createElement("div");
+              movieElement.className = "movie-item";
+              movieElement.style.backgroundImage = `url(${IMAGE_URL}${movie.poster_path})`;
+
+              movieElement.addEventListener("click", () => {
+                window.location.href = `movie-details.html?id=${movie.id}`;
+              });
+
+              moviesList.appendChild(movieElement);
+            });
+          })
+          .catch((error) => {
+            console.error(`Error during fetch: ${error}`);
+            const moviesList = document.querySelector("#movies-list");
+            moviesList.innerHTML = `<div style="color:red">${error}</div>`;
+          });
+      }
+
+      function showMovieDetails(movieId) {
+        const MOVIE_URL = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+        fetch(MOVIE_URL)
+          .then((response) => response.json())
+          .then((data) => {
+            const titleElement = document.querySelector("#movie-title");
+            const castElement = document.querySelector("#movie-cast");
+            const directorElement = document.querySelector("#movie-director");
+            const posterElement = document.querySelector("#movie-poster");
+            const ratingElement = document.querySelector("#movie-rating");
+            const runtimeElement = document.querySelector("#movie-runtime");
+
+            titleElement.innerHTML = data.title;
+            posterElement.src = `${IMAGE_URL}${data.poster_path}`;
+            ratingElement.innerHTML = `Rating: ${data.vote_average}`;
+            runtimeElement.innerHTML = `Runtime: ${data.runtime} minutes`;
+
+            // Add new API for getting cast and director data
+            const IMDB_API_URL = "https://imdb-api.com/en/API/";
+            const IMDB_API_KEY = "k_kz29ssiu";
+
+            const movieIdIMDB = data.imdb_id.replace("tt", "");
+            const MOVIE_URL_IMDB = `${IMDB_API_URL}Title/${IMDB_API_KEY}/${movieIdIMDB}`;
+
+            fetch(MOVIE_URL_IMDB)
+              .then((response) => response.json())
+              .then((imdbData) => {
+                castElement.innerHTML = `Cast: ${imdbData.stars}`;
+                directorElement.innerHTML = `Director(s): ${imdbData.directors}`;
+              })
+              .catch((error) => console.error(`Error during fetch - IMDB API: ${error}`));
+          })
+          .catch((error) => {
+            console.error(`Error during fetch - Movies DB API: ${error}`);
+          });
+      }
+    </script>
+  </body>
+</html>

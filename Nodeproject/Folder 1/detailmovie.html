@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Details</title>
+</head>
+<body>
+	<h1 id="movieTitle"></h1>
+	<div id="movieDetails">
+		<img id="movieImg" src="" alt="">
+		<p>Cast: <span id="movieCast"></span></p>
+		<p>Director: <span id="movieDirector"></span></p>
+		<p>Rating: <span id="movieRating"></span></p>
+		<p>Runtime: <span id="movieRuntime"></span></p>
+	</div>
+
+	<script type="text/javascript">
+        const movieTitle = localStorage.getItem('movieTitle');
+        const movieCast = localStorage.getItem('movieCast');
+        const movieImgSrc = localStorage.getItem('movieImgSrc');
+        const movieDirector = localStorage.getItem('movieDirector');
+        const movieRating = localStorage.getItem('movieRating');
+        const movieRuntime = localStorage.getItem('movieRuntime');
+
+        document.getElementById('movieTitle').innerHTML = movieTitle;
+        document.getElementById('movieImg').setAttribute('src', movieImgSrc);
+        document.getElementById('movieCast').innerHTML = movieCast;
+        document.getElementById('movieDirector').innerHTML = movieDirector;
+        document.getElementById('movieRating').innerHTML = movieRating;
+        document.getElementById('movieRuntime').innerHTML = movieRuntime;
+	</script>
+</body>
+</html>

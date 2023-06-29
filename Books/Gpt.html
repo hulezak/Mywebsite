@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Quiz</h1>
+    <p id="question">Question goes here.</p>
+    <div id="answers">
+      <button id="answer1">a</button>
+      <button id="answer2">b</button>
+      <button id="answer3">c</button>
+      <button id="answer4">d</button>
+    </div>
+    <button id="submit">Submit Answer</button>
+    <p id="score">Score: 0</p>
+  </div>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+#question {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+#answers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#answers button {
+  width: calc(50% - 10px);
+  height: 80px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+
+button:hover {
+background-color: green;
+}
+
+#submit {
+  display: block;
+  margin-top: 20px;
+}
+
+#score {
+  margin-top: 20px;
+}
+  </style>
+
+  <script src="gpt.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<style>
+.comments {
+  margin-top: 20px;
+}
+
+.comments h2 {
+  font-size: 22px;
+}
+
+.comments form {
+  margin-bottom: 10px;
+}
+
+.comments textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.comments button[type="submit"] {
+  padding: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+  
+</style>
+
+
+
+
+<section class="comments">
+  <h2>Comments</h2>
+  <form>
+    <label for="comment">Add a comment:</label>
+    <textarea id="comment" name="comment" rows="3"></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+  <ul id="comment-list"></ul>
+</section>
+<script>
+// JavaScript code
+
+// Load comments from local storage on page load
+window.onload = function() {
+  var comments = JSON.parse(localStorage.getItem("comments"));
+  if (comments) {
+    populateComments(comments);
+  }
+};
+
+// Function to submit comment
+function submitComment() {
+  // Get comment data from form
+  var name = document.getElementById("name").value;
+  var comment = document.getElementById("comment").value;
+  
+  // Create new comment object
+  var newComment = {
+    name: name,
+    comment: comment
+  };
+// Get existing comments from local storage or create empty array
+  var comments = JSON.parse(localStorage.getItem("comments")) || [];
+  
+  // Add new comment to array and store back in local storage
+  comments.push(newComment);
+  localStorage.setItem("comments", JSON.stringify(comments));
+  
+  // Update comments display
+  populateComments(comments);
+}
+
+// Function to populate comments on page
+function populateComments(comments) {
+  var commentsHtml = "";
+  for (var i = 0; i < comments.length; i++) {
+    commentsHtml += "<div><strong>" + comments[i].name + ":</strong> " + comments[i].comment + "</div>";
+  }
+  document.getElementById("comments").innerHTML = commentsHtml;
+}
+</script>

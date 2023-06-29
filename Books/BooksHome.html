@@ -1,0 +1,231 @@
+<!DOCtype html>
+<html lang="en">
+  <head> <title>Books Home</title>
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="Author" content="W3docs">
+
+  </head>
+  
+  
+  <body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<section id="navbar">
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="books.html">Books</a>
+  <a href="#contact">Conrrttggtact</a>
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()"> 
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg>
+   </a>
+</div>
+ </section>
+ 
+ 
+    
+    
+    
+    
+    
+    <div id="container">
+          <H2> WELCOME TO OUR BOOK STORE</H2>
+      
+      <form action="https://fmoviesto.site/search" method="get" class="search-bar">
+     <input  type="text" placeholder="Search anything" name='q'>
+     <button  type="submit"> 
+     <!-- search button symbol -->
+     <svg id="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg> </button>
+        
+        
+      </form>
+     <!-- <form id="form">
+       
+       <fieldset> 
+      
+        <label> search:</label><input type="text" id="searchbar" >
+        <button id="search"> search</button>
+    </fieldset> 
+          
+      
+       
+    </form> -->
+    </div>
+    
+    
+    
+    
+    
+  <style>
+h2{ font-size:50px;
+color: blue;
+}
+     
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', Sans-Serif;
+  }
+  #container{
+    width: 100%;
+    min-height: 100vh;
+    padding: 5px;
+    background-image:/*linear-gradient(rgba(10,8,51,0.9),rgba(10,8,51,0.9)),*/ url(/img1/h1.jpeg); 
+  background-position: center;
+  background-size: cover;
+
+
+  }
+    
+    .search-bar {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      border-radius:60px;
+      padding:10px 20px ;
+      backdrop-filter: blur(10px) saturate(180%);
+      position: relative;
+    margin-left: auto;
+    margin-right: Auto;
+    margin-top: 70%;
+    }
+    .search-bar input {
+      background: trasparent;
+      flex: 1;
+      
+      border: 0;
+      outline: none;
+      padding: 24px 20px;
+      font-size: 20px;
+     color: #cac7ff;
+      border-radius: 60px;
+    }
+    ::placeholder {
+      color: #cac7ff;
+    }
+    .search-bar button #svg{
+    width: 25px;
+      
+    }
+    .search-bar button {
+      border: 0;
+      border-radius: 50px;
+      background-color: #e80000;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+    }
+    
+    
+    
+    
+    
+    /* THE NAVBAR SECTION */
+  
+#navbar {
+ 
+  background-color:#04AA6D;
+  display:display;
+  width: 100%;
+  height: 60px;
+}
+.topnav {
+  background-color: green;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  h2{ font-size:20px;
+  color: blue;
+}
+    .search-bar {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      border-radius:10ppx;
+      padding:5px 10px ;
+      backdrop-filter: blur(10px) saturate(180%);
+    }
+    .search-bar input {
+      background: trasparent;
+      flex: 1;
+      
+      border: 0;
+      outline: none;
+      padding: 12px 10px;
+      font-size: 5px;
+     color: #cac7ff;
+      border-radius: 10px;
+    }
+  
+</style>
+<script>
+
+
+
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+    
+  </body>
+</html>

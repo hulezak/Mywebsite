@@ -1,0 +1,122 @@
+<html>
+<head>
+  <style>
+  #img {
+  padding-left: auto;
+  margin-right: auto;
+}
+  </style>
+</head>
+<body>
+  <h1 id="moviename">venom</h1>
+  <div class="img"> 
+    <img id="img" src="https://via.placeholder.com/150" >
+  </div> 
+  <div id="title">Title: </div> 
+  <div id="year">Year: </div>
+  <div id="runtime">Runtime: </div>
+  <div id="genre">Genre: </div>
+  <div id="director">Director: </div>
+  <div id="cast">Cast: </div>
+  <div id="rating">Rating: </div>
+  <div id="trailer">Trailer:</div>
+  <div id="photos">Cast Photos:</div>
+
+
+  <script>
+  const movieTitle = document.getElementById("moviename").innerText;
+
+  function getMovieInfo(title) {
+    const apiKey = "166b8666";
+    const url = `http://www.omdbapi.com/?apikey=${apiKey}&t=${title}&plot=full`;
+
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const movie = data;
+        const poster = movie.Poster;
+        const title = movie.Title;
+        const year = movie.Year;
+        const runtime = movie.Runtime;
+        const genre = movie.Genre;
+        const director = movie.Director;
+        const cast = movie.Actors;
+        const rating = `${movie.imdbRating}/10`;
+        const imdbId = movie.imdbID;
+
+        // update the HTML elements here
+        const titleElem = document.getElementById("title");
+        const movie_poster = document.getElementById("img");
+        const yearElem = document.getElementById("year");
+        const runtimeElem = document.getElementById("runtime");
+        const genreElem = document.getElementById("genre");
+        const directorElem = document.getElementById("director");
+        const castElem = document.getElementById("cast");
+        const ratingElem = document.getElementById("rating");
+        const trailerElem = document.getElementById("trailer");
+        const photosElem = document.getElementById("photos");
+
+        movie_poster.src = poster;
+        titleElem.innerText += title;
+        yearElem.innerText += year;
+        runtimeElem.innerText += runtime;
+        genreElem.innerText += genre;
+        directorElem.innerText += director;
+        castElem.innerText += cast;
+        ratingElem.innerText += rating;
+
+        // get trailer and cast images from imdb
+        fetch(`https://www.imdb.com/title/${imdbId}/videogallery`)
+          .then(res => res.text())
+          .then(html => {
+            trailerElem.innerHTML += html.match(/<link rel="preload" href="(.*?)"/)[1];
+            photosElem.innerHTML += html.match(/<a class="ipc-lockup-overlay ipc-focusable" tabindex="0" href="(.*?)"/)[1];
+          }).catch(error => console.error(error));
+      })
+      .catch(error => console.error(error));
+  }
+
+  function displayMovieInfo(movie) {
+    const title = movie.Title;
+    const cast = movie.Actors;
+    const year = movie.Year;
+    const runtime = movie.Runtime;
+    const genre = movie.Genre;
+    const director = movie.Director;
+    const rating = `${movie.imdbRating}/10`;
+    const imdbId = movie.imdbID;
+    const poster = movie.Poster;
+
+    // update the HTML elements here
+    const titleElem = document.getElementById("title"); 
+    const imgElem = document.getElementById("img");
+    const yearElem = document.getElementById("year");
+    const runtimeElem = document.getElementById("runtime");
+    const genreElem = document.getElementById("genre");
+    const directorElem = document.getElementById("director");
+    const castElem = document.getElementById("cast");
+    const ratingElem = document.getElementById("rating");
+
+    titleElem.innerText += title;
+    imgElem.src = poster;
+    yearElem.innerText += year;
+    runtimeElem.innerText += runtime;
+    genreElem.innerText += genre;
+    directorElem.innerText += director;
+    castElem.innerText += cast;
+    ratingElem.innerText += rating;
+
+    // get trailer and cast images from imdb
+    fetch(`https://www.imdb.com/title/${imdbId}/videogallery`)
+      .then(res => res.text())
+      .then(html => {
+        trailerElem.innerHTML += html.match(/<link rel="preload" href="(.*?)"/)[1];
+        photosElem.innerHTML += html.match(/<a class="ipc-lockup-overlay ipc-focusable" tabindex="0" href="(.*?)"/)[1];
+      }).catch(error => console.error(error));
+  }
+
+  getMovieInfo(movieTitle).then(displayMovieInfo);
+  </script>
+</body>
+</html>

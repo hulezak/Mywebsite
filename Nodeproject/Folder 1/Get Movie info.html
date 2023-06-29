@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Cast and Crew</title>
+</head>
+<body>
+	<h1>Movie Information:</h1>
+	<div id="movie-info"></div>
+
+	<script>
+		// Change this to your OMDB API key
+		const apiKey = '166b8666';
+		
+		function getMovieInfo() {
+			const movieTitle = document.getElementById('movie-title').value;
+			const url = `http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`;
+
+			fetch(url)
+			  .then(response => response.json())
+			  .then(data => {
+			  	console.log(data);
+
+			  	// Extract the cast and crew information from the data object
+			  	const castList = data.Actors.split(', ');
+			  	const directorList = data.Director.split(', ');
+			  	const writerList = data.Writer.split(', ');
+
+			  	// Build the HTML for displaying the cast and crew information
+			  	let castHTML = '<h2>Cast:</h2><ul>';
+				castList.forEach(person => {
+					castHTML += '<li>' + person + '</li>';
+				});
+				castHTML += '</ul>';
+
+				let directorHTML = '<h2>Director(s):</h2><ul>';
+				directorList.forEach(person => {
+					directorHTML += '<li>' + person + '</li>';
+				});
+				directorHTML += '</ul>';
+
+				let writerHTML = '<h2>Writer(s):</h2><ul>';
+				writerList.forEach(person => {
+					writerHTML += '<li>' + person + '</li>';
+				});
+				writerHTML += '</ul>';
+
+// Append the HTML to the page
+				const movieInfoDiv = document.getElementById('movie-info');
+				movieInfoDiv.innerHTML = castHTML + directorHTML + writerHTML;
+			  })
+			  .catch(error => console.error(error));
+		}
+	</script>
+
+	<form onsubmit="getMovieInfo(); return false;">
+		<label for="movie-title">Movie Title:</label>
+		<input type="text" id="movie-title" required>
+		<button type="submit">Get Info</button>
+	</form>
+
+</body>
+</html>
+

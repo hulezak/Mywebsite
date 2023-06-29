@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movies List</title>
+	<script type="text/javascript">
+	function searchMovies() {
+  let input = document.getElementById("searchbar").value;
+  input=input.toLowerCase();
+  let movies = document.getElementsByClassName("movie");
+  for (i = 0; i < movies.length; i++) {
+    if (!movies[i].innerHTML.toLowerCase().includes(input)) {
+      movies[i].style.display="none";
+    }
+    else {
+      movies[i].style.display="flex";             
+    }
+  }
+}
+		
+
+		function showMovieDetails(title, cast, imgSrc, director) {
+			localStorage.setItem('movieTitle', title);
+			localStorage.setItem('movieCast', cast);
+			localStorage.setItem('movieImgSrc', imgSrc);
+			localStorage.setItem('movieDirector', director);
+            window.location.href = 'detailmovie.html';
+		}
+
+		function clearMovieList() {
+			document.getElementById('movieList').innerHTML = '';
+		}
+
+		function addMovie(title, cast, imgSrc, director, rating, runtime) {
+			const movieList = document.getElementById('movieList');
+			const movieDiv = document.createElement('div');
+			movieDiv.setAttribute('class', 'movie');
+			const titlePar = document.createElement('p');
+			titlePar.setAttribute('class', 'title');
+			titlePar.innerHTML = `<a href="#" onclick="showMovieDetails('${title}', '${cast}', '${imgSrc}', '${director}', '${rating}', '${runtime}');">${title}</a>`;
+			movieDiv.appendChild(titlePar);
+			const img = document.createElement('img');
+			img.setAttribute('src', imgSrc);
+			img.setAttribute('alt', title);
+			img.style.width = '100px';
+			img.style.height = '150px';
+			movieDiv.appendChild(img);
+			movieList.appendChild(movieDiv);
+		}
+
+		window.onload = function() {
+			addMovie('Pulp Fiction', 'John Travolta, Uma Thurman, Samuel L. Jackson', 'https://www.movieartarena.com/imgs/pulp-fiction-movie-poster-1.jpg', 'Quentin Tarantino', '8.9', '2h 58m');
+			addMovie('The Godfather', 'Marlon Brando, Al Pacino, James Caan', 'http://www.gstatic.com/tv/thumb/v22vodart/1107/p1107_v_v8_aa.jpg', 'Francis Ford Coppola', '9.2', '2h 58m');
+			addMovie('The Shawshank Redemption', 'Tim Robbins, Morgan Freeman, Bob Gunton', 'https://cdn.shopify.com/s/files/1/1416/8662/products/04823-Bradley_Edd_The_Shawshank_Redemption_Key_Art_BB_Print_Proof_DV_2048x2048.jpg', 'Frank Darabont', '9.3', '2h 22m')
+
+			document.getElementById('movieList').style.display = 'block';
+			document.getElementById('movieDetails').style.display = 'none';
+		}
+	</script>
+</head>
+<body>
+	<label for="searchbar">Search:</label>
+	<input type="text" id="searchbar" onkeyup="searchMovies()">
+	
+	<button onclick="clearMovieList()">Clear</button>
+
+	<div id="movieList"></div>
+	<div id="movieDetails"></div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+   <head>
+      <title>Fetch Response in HTML Page</title>
+      <script>
+        fetch('https://api.themoviedb.org/3/movie/597?api_key=633e13feb64782177da6da3e1f6b1dc2')/*
+         fetch('http://www.omdbapi.com/?apikey=166b8666&t=venom') */
+         .then(response => response.json())
+         .then(data => {
+            document.getElementById('result').innerHTML = JSON.stringify(data); 
+         });
+         
+         
+      </script>
+   </head>
+   <body>
+      <div id="result">
+        
+        
+      </div>
+   </body>
+</html>

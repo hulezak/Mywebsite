@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Latest Movies</title>
+</head>
+<body>
+  <h1>Latest Movies</h1>
+  <div id="movies"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // API endpoint and API key
+    const apiKey = '166b8666';
+    const apiEndpoint = `http://www.omdbapi.com/?apikey=${apiKey}&s=`;
+
+    // Perform the API request
+    $.get(apiEndpoint + 'latest', function(data) {
+      // Extract the movies from the returned data
+      const movies = data.Search;
+// Perform the API request
+    $.get(apiEndpoint + 'latest', function(data) {
+      // Extract the movies from the returned data
+      const movies = data.Search;
+
+      // Display each movie's title and image
+      $.each(movies, function(i, movie) {
+        $('#movies').append(`<div><img src="${movie.Poster}" alt="${movie.Title}"><h2>${movie.Title}</h2></div>`);
+      });
+    });
+  </script>
+</body>
+</html>

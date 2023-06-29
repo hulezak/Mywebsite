@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game of Thrones Media</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			margin: 0 auto;
+			font-family: Arial, Helvetica, sans-serif;
+			text-align: center;
+		}
+		th, td {
+			padding: 10px;
+			border: 1px solid black;
+		}
+		img {
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Game of Thrones Media</h1>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Genre</th>
+				<th>Runtime</th>
+				<th>Cast</th>
+				<th>Photo</th>
+				<th>Trailer</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<!-- API response data goes here -->
+		</tbody>
+	</table>
+
+<script>
+        async function getMedia() {
+            const response = await fetch('https://api.themoviedb.org/3/tv/1399?api_key=633e13feb64782177da6da3e1f6b1dc2&language=en-US');
+            const data = await response.json();
+            const cast = data.credits.cast.slice(0, 5).map(actor => actor.name).join(', ');
+
+            const mediaData = [{
+                title: data.name,
+                genre: data.genres[0].name,
+                runtime: `${data.episode_run_time[0]} min`,
+                cast: cast,
+                photo: `https://image.tmdb.org/t/p/w600_and_h900_bestv2${data.poster_path}`,
+                trailer: `https://www.youtube.com/watch?v=${data.videos.results[0].key}`
+            }]
+
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            mediaData.forEach(media => {
+                const row = document.createElement('tr');
+                const titleCell = document.createElement('td');
+                titleCell.innerText = media.title;
+                row.appendChild(titleCell);
+const genreCell = document.createElement('td');
+                genreCell.innerText = media.genre;
+                row.appendChild(genreCell);
+
+                const runtimeCell = document.createElement('td');
+                runtimeCell.innerText = media.runtime;
+                row.appendChild(runtimeCell);
+
+                const castCell = document.createElement('td');
+                castCell.innerText = media.cast;
+                row.appendChild(castCell);
+
+                const photoCell = document.createElement('td');
+                const photoLink = document.createElement('a');
+                photoLink.href = media.photo;
+                photoLink.target = '_blank';
+                const photoImg = document.createElement('img');
+                photoImg.src = media.photo;
+                photoLink.appendChild(photoImg);
+                photoCell.appendChild(photoLink);
+                row.appendChild(photoCell);
+
+                                const trailerCell = document.createElement('td');
+                const trailerLink = document.createElement('a');
+                trailerLink.href = media.trailer;
+                trailerLink.target = '_blank';
+                trailerLink.innerText = 'Watch Trailer';
+                trailerCell.appendChild(trailerLink);
+                row.appendChild(trailerCell);
+
+                tbody.appendChild(row);
+            });
+        }
+      
+        getMedia();
+    </script>
+</body>
+</html>

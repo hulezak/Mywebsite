@@ -1,0 +1,76 @@
+<form id="search-form">
+  <input type="text" id="search-input" placeholder="Search for movies...">
+  <button type="submit">Search</button>
+</form>
+<div id="results"></div>
+<style>
+#search-form {
+  display: flex;
+}
+
+#search-input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+#results {
+  flex-wrap: flex-wrap;
+  display: flex;
+  margin-top: 20px;
+}
+
+.result {
+  
+  margin-bottom: 20px;
+}
+
+.result-img {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  width: 30%;
+  height: auto;
+}
+</style>
+
+<script> 
+const apiKey = '633e13feb64782177da6da3e1f6b1dc2';
+const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
+const resultsDiv = document.getElementById('results');
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const query = searchInput.value;
+  fetch(apiUrl + query)
+    .then(response => response.json())
+    .then(data => displayMovies(data.results))
+    .catch(error => console.log(error));
+});
+
+function displayMovies(movies) {
+  resultsDiv.innerHTML = '';
+  const movieList = document.createElement('div');
+  movieList.id = 'movie-list';
+  resultsDiv.appendChild(movieList);
+  movies.forEach(movie => {
+    const movieElement = document.createElement('a');
+    movieElement.href = `detailmovie.html?id=${movie.id}&title=${encodeURIComponent(movie.title)}`;
+    movieElement.classList.add('result');
+    const movieImg = document.createElement('img');
+    movieImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    movieImg.alt = movie.title;
+    movieImg.classList.add('result-img');
+    movieElement.appendChild(movieImg);
+    movieList.appendChild(movieElement);
+  });
+  
+}
+
+function clearMovieList() {
+  const movieList = document.getElementByClass('movie-card');
+  if (movieList !== null) {
+    movieList.innerHTML = '';
+  }
+}
+</script>

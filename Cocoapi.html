@@ -1,0 +1,76 @@
+<html>
+<head>
+</head>
+<body>
+  <img id="img" src="https://via.placeholder.com/150" >
+  <div id="title"></div> 
+  <div id="cast"></div>
+  <div id="directors"></div>
+  <div id="rating"></div>
+
+
+  <script> 
+  function getMovieInfo(title) {
+    const apiKey = "166b8666";
+    const url = `http://www.omdbapi.com/?apikey=${apiKey}&t=${title}&plot=full`;
+
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const movie = data;
+        const poster = movie.Poster;
+        const title = movie.Title;
+        const cast = movie.Actors;
+        const directors = movie.Director;
+        const rating = `${movie.imdbRating}/10`;
+
+
+        // update the HTML elements here
+        const titleElem = document.getElementById("title");
+        const imgElem = document.getElementById("img");
+        const castElem = document.getElementById("cast");
+        const directorsElem = document.getElementById("directors");
+        const ratingElem = document.getElementById("rating");
+
+
+        titleElem.innerText = title;
+        imgElem.src = poster;
+        castElem.innerText = `Cast: ${cast}`;
+        directorsElem.innerText = `Directors: ${directors}`;
+        ratingElem.innerText = `Rating: ${rating}`;
+      })
+      .catch(error => console.error(error));
+  }
+
+
+  function displayMovieInfo(movie) {
+  const title = movie.Title;
+  const cast = movie.Actors;
+  const directors = movie.Director;
+  const rating = `${movie.imdbRating}/10`;
+  const poster = movie.Poster;
+
+
+  // update the HTML elements here
+  const titleElem = document.getElementById("title"); 
+  const imgElem = document.getElementById("img");
+  const castElem = document.getElementById("cast");
+  const directorsElem = document.getElementById("directors");
+  const ratingElem = document.getElementById("rating");
+
+
+  titleElem.innerText = title;
+  imgElem.src = poster;
+  castElem.innerText = `Cast: ${cast}`;
+  directorsElem.innerText = `Directors: ${directors}`;
+  ratingElem.innerText = `Rating: ${rating}`;
+}
+
+
+  getMovieInfo("coco").then(displayMovieInfo);
+  </script>
+
+
+</body>
+</html>

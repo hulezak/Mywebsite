@@ -1,0 +1,97 @@
+
+<form id="search-form">
+  <input type="text" id="search-input" placeholder="Search for movies...">
+  <button type="submit">Search</button>
+</form>
+<div id="movie-list"></div>
+<style>
+
+
+#search-form {
+  display: flex;
+}
+
+
+#search-input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+
+#movie-list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.movie {
+  margin: 10px;
+  width: calc(33.3333% - 20px);
+  background-color: white;
+  padding: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+.movie-img {
+  width: 100%;
+}
+
+
+.movie h2 {
+  font-size: 24px;
+}
+
+
+.movie p {
+  text-align: justify;
+}
+
+@media screen and (max-width: 768px) {
+  .movie {
+    width: calc(50% - 20px); 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .movie {
+    width: calc(100% - 20px); 
+  }
+}
+</style>
+<script>
+  
+  const apiKey = '633e13feb64782177da6da3e1f6b1dc2';
+const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
+
+
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+const movieList = document.getElementById('movie-list');
+
+
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const query = searchInput.value;
+  fetch(apiUrl + query)
+    .then(response => response.json())
+    .then(data => displayMovies(data.results))
+    .catch(error => console.log(error));
+});
+
+
+function displayMovies(movies) {
+  movieList.innerHTML = '';
+  movies.forEach(movie => {
+    const movieElement = document.createElement('div');
+    movieElement.classList.add('movie');
+    movieElement.innerHTML = `
+      <img class="movie-img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+      <h2>${movie.title}</h2>
+      <p>${movie.overview}</p>
+    `;
+    movieList.appendChild(movieElement);
+  });
+}
+</script>

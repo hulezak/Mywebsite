@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Movie Detail</title>
+  </head>
+  <body>
+    <h1 id="movieTitle"></h1>
+    <img id="poster" src="">
+    <p>Release Date: <span id="releaseDate"></span></p>
+    <p>Runtime: <span id="runtime"></span> minutes</p>
+    <p id="overview"></p>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+const baseURL = "https://api.themoviedb.org/3";
+const apiKey = "633e13feb64782177da6da3e1f6b1dc2";
+
+$(document).ready(() => {
+  const params = new URLSearchParams(window.location.search);
+  const movieId = params.get("id");
+  const url = `${baseURL}/movie/${movieId}?api_key=${apiKey}`;
+  
+  $.get(url)
+    .done((data) => {
+      $("#movieTitle").text(data.title);
+      const posterURL = `https://image.tmdb.org/t/p/w342${data.poster_path}`;
+      $("#poster").attr("src", posterURL);
+      $("#releaseDate").text(data.release_date);
+      $("#runtime").text(data.runtime);
+      $("#overview").text(data.overview);
+    })
+    .fail(() => {
+      $("body").append("<p>Error fetching movie details</p>");
+    });
+});
+      
+      
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<body>
+  <style>
+  button {
+    width: 70px;
+    height: 70px;
+  }
+  
+  #Calculater {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  height: 500px;
+  float: left;
+  }
+    input {
+      background-color: #00ccff88;
+      color: white;
+    }
+  </style>
+    <h1>Calculate your opinion</h1>
+  <form>
+  <label for="celsius">Celsius:</label><br />
+  <input type="number" id="celsius" value="0">
+  <br /><br />
+  <label for="fahr">Fahrenheit:</label><br />
+  <input type="number" id="fahr" value="32">
+</form>
+  
+  <div id="Calculater">
+  <label for="Calculate">Celsius:</label><br />
+  <input type="number" id="calculate">
+    <button value="22" id="1">1</button>
+    <button value="345" id="2">2</button>
+    <button id="3">3</button>
+    <button id="4">4</button>
+    <button id="5">5</button>
+    <button id="6">6</button>
+    <button id="7">7</button>
+    <button id="8">8</button>
+    <button id="9">9</button>
+    <button id="0">0</button>
+   
+  
+   <button id="=">=</button>
+
+   <button id="+">+</button>
+    <button id="_">_</button>
+    <button id="×">×</button>
+    <button id="÷">÷</button>
+  
+</div>
+
+    
+    
+  
+  
+  
+  
+ <script>
+ /*
+
+window.onload = function() {
+  let c = document.getElementById("celsius");
+  let f = document.getElementById("fahr");
+  c.oninput = function() {
+      f.value = (c.value * 9/5) + 32;
+  };
+  f.oninput = function() {
+      c.value = (f.value - 32) * 5/9;
+  }
+};
+
+*/
+ document.addEventListener('DOMContentLoaded', 
+ function() {
+   document.querySelectorAll("button").forEach (function(button) {
+     button.onclick= function() {
+document.querySelector('#calculate').innerHTML = "hhjjj";
+  
+
+
+    } 
+   })
+ });
+/*
+ 
+ document.addEventListener('DOMContentLoaded', 
+ function() {
+   document.querySelector("button").onchange = function() {
+     document.querySelector('#calculate').innerHTML= this.value;
+   }
+ });
+ 
+ */
+ </script>
+ 
+ 
+</body>

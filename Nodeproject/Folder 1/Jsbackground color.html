@@ -1,0 +1,70 @@
+<html>
+  
+ <head>
+   
+ </head>
+ <script>
+ 
+ /*document.addEventListener('DOMContentLoaded', 
+ function() {
+   // change color to red 
+    document.querySelector("#red").onclick = function() {
+      document.querySelector("#h1").style.color = 'red';
+    };
+    
+    // change color to red 
+    document.querySelector("#green").onclick = function() {
+      document.querySelector("#h1").style.color = 'green';
+    };
+    
+// change color to blue 
+    document.querySelector("#blue").onclick = function() {
+      document.querySelector("#h1").style.color = 'blue';
+    };
+    
+    document.querySelectorAll(button).forEach(function(button) {
+     button.onclick  = function() {
+     document.querySelector("h1").style.color = button.dataset.color; 
+     
+   };
+   });
+    
+    
+    
+  });*/
+  
+  
+  
+   // Background color of hyml
+   
+   
+document.addEventListener('DOMContentLoaded', 
+ function() {
+   document.querySelector("select").onchange = function() {
+     document.querySelector('body').style.background = this.value;
+   }
+ });
+
+
+   
+   
+   
+ </script>
+ <body>
+   
+   <h1>haile
+   </h1>
+ 
+   <h1 id="hello">welcome</h1>
+   
+<h3>choose background :</h3>
+  <select>
+    <option value="black">Black</option>
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <option value="green">green</option>
+  </select>
+
+ </body  
+
+</html>

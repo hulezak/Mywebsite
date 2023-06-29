@@ -1,0 +1,42 @@
+<!DOCtype html>
+<html lang="en">
+  <head> <title>Books Home</title>
+  <script>
+document.addEventListener('DOMContentLoaded',function() {
+      document.querySelector('form').onsubmit = function() {
+const task = document.querySelector('#task').value;
+   const li = document.creatElement("li");
+   li.innerHTML = task;
+ document.querySelector('#tasks').append(li);
+ 
+ 
+ 
+        return false;
+   
+   
+       
+       
+      }
+    });
+  </script>
+
+  </head>
+  <body>
+    <H2> WELCOME TO OUR BOOK STORE</H2>
+    
+    <ul id="tasks">
+    
+  </ul>
+  <form>
+    <input id="task" type="text" placeholder="New Task">
+    <input type="submit">
+  </form>
+  
+    
+    
+    
+    
+    
+    
+  </body>
+</html>

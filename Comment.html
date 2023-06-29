@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Box</title>
+  <style>
+body {
+    background: dodgerblue linear-gradient(45deg, aqua, dodgerblue, deeppink) fixed;
+
+}
+#comment-box, #post {
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    height: 80px;
+}
+#post:hover{
+    background-color: deeppink;
+}
+    
+  </style>
+
+</head>
+<body>
+   
+    <input type="text" id="comment-box" placeholder="Enter comment">
+    <button id="post">Post</button>
+    <ul id="unordered">
+       
+   </ul>
+   
+ <script>
+ var post= document.getElementById("post");
+post.addEventListener("click", function(){
+    var commentBoxValue= document.getElementById("comment-box").value;
+ 
+    var li = document.createElement("li");
+    var text = document.createTextNode(commentBoxValue);
+    li.appendChild(text);
+    document.getElementById("unordered").appendChild(li);
+ 
+});
+
+   
+   
+ </script>
+ </body>
+</html>
+

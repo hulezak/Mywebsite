@@ -1,0 +1,82 @@
+
+<style>
+#quiz {
+  max-width: 500px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+#question {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+#submit {
+  display: block;
+  margin: auto;
+}
+
+#results {
+  text-align: center;
+}
+</style>
+
+<div id="quiz">
+  <h2>Quiz Title</h2>
+  <div id="question"></div>
+  <button id="submit">Submit Answer</button>
+  <div id="results"></div>
+</div>
+<script>
+  const questions = [
+  {
+    question: "What is the capital of France?",
+    answers: [
+      { text: "Berlin", correct: false },
+      { text: "Paris", correct: true },
+      { text: "Madrid", correct: false },
+      { text: "Rome", correct: false }
+    ]
+  },
+  {
+    question: "What is the largest planet in our solar system?",
+    answers: [
+      { text: "Venus", correct: false },
+      { text: "Mars", correct: false },
+      { text: "Saturn", correct: false },
+      { text: "Jupiter", correct: true }
+    ]
+  },
+  {
+    question: "What is the smallest country in the world?",
+    answers: [
+      { text: "Monaco", correct: false },
+      { text: "San Marino", correct: false },
+      { text: "The Vatican City", correct: true },
+      { text: "Liechtenstein", correct: false }
+    ]
+  }
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+const questionElement = document.getElementById('question');
+const answerButtons = document.querySelectorAll('[data-answer]');
+const submitButton = document.getElementById('submit');
+const resultsElement = document.getElementById('results');
+
+function showQuestion() {
+  let question = questions[currentQuestionIndex];
+  questionElement.innerText = question.question;
+
+  answerButtons.forEach((button, index) => {
+    button.innerText = question.answers[index].text;
+    button.dataset.correct = question.answers[index].correct;
+  });
+  
+</script>

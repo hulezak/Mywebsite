@@ -1,0 +1,97 @@
+
+<html>
+<head>
+  <style>
+  #img {
+  padding-left: auto;
+  margin-right: auto;
+  
+  
+  
+}
+
+  </style>
+</head>
+<body>
+  
+  
+  
+  
+  <h1 id="moviename">venom</h1>
+  
+  
+  
+  
+  <div class="img"> 
+ <img id="img" src="https://via.placeholder.com/150" >
+  </div> 
+  <div id="title">nnnn </div> 
+  <div id="cast">hhhh </div>
+  <div id="directors">vvhh </div>
+  <div id="rating"> yyyy</div>
+  <div id="e"> </div> 
+
+  <script> 
+  const movieTitle = document.getElementById("moviename").innerText;
+  
+  function getMovieInfo(title) {
+    const apiKey = "166b8666";
+    const url = `http://www.omdbapi.com/?apikey=${apiKey}&t=${title}&plot=full`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const movie = data;
+        const poster = movie.Poster;
+        const title = movie.Title;
+        const cast = movie.Actors;
+        const directors = movie.Director;
+        const rating = `${movie.imdbRating}/10`;
+
+        // update the HTML elements here
+        const titleElem = document.getElementById("title");
+        const movie_poster = document.getElementById("img");
+        const castElem = document.getElementById("cast");
+        const directorsElem = document.getElementById("directors");
+        const ratingElem = document.getElementById("rating");
+
+        movie_poster.src = poster;
+        titleElem.innerText = title;
+        castElem.innerText = `Cast: ${cast}`;
+        directorsElem.innerText = `Directors: ${directors}`;
+        ratingElem.innerText = `Rating: ${rating}`;
+      })
+      .catch(error => console.error(error));
+  }
+
+
+  function displayMovieInfo(movie) {
+  const title = movie.Title;
+  const cast = movie.Actors;
+  const directors = movie.Director;
+  const rating = `${movie.imdbRating}/10`;
+  const poster = movie.Poster;
+
+
+  // update the HTML elements here
+  const titleElem = document.getElementById("title"); 
+  const imgElem = document.getElementById("img");
+  const castElem = document.getElementById("cast");
+  const directorsElem = document.getElementById("directors");
+  const ratingElem = document.getElementById("rating");
+
+
+  titleElem.innerText = title;
+  imgElem.src = poster;
+  castElem.innerText = `Cast: ${cast}`;
+  directorsElem.innerText = `Directors: ${directors}`;
+  ratingElem.innerText = `Rating: ${rating}`;
+}
+
+
+  getMovieInfo(movieTitle).then(displayMovieInfo);
+  </script>
+
+
+</body>
+</html>
