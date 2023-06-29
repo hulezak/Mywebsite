@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+    .calculator {
+  width: 250px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.display {
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  width: 70px;
+  height: 50px;
+  font-size: 24px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.equals {
+  background-color: #f26d5b;
+}
+
+.btn:hover {
+    background-color: #ddd;
+    color:#333
+}  
+      
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="display">
+        <input type="text" placeholder="0" id="output">
+      </div>
+      <button class="btn" onclick="clearOutput()">C</button>
+      <button class="btn" onclick="appendToOutput('/')">/</button>
+      <button class="btn" onclick="appendToOutput('*')">x</button>
+       <button class="btn" onclick="appendToOutput('+')">+</button>
+       <button class="btn" onclick="appendToOutput('-')">-</button>
+      <button class="btn" onclick="appendToOutput('7')">7</button>
+      <button class="btn" onclick="appendToOutput('8')">8</button>
+      <button class="btn" onclick="appendToOutput('9')">9</button>
+     
+      <button class="btn" onclick="appendToOutput('4')">4</button>
+      <button class="btn" onclick="appendToOutput('5')">5</button>
+      <button class="btn" onclick="appendToOutput('6')">6</button>
+
+      <button class="btn" onclick="appendToOutput('1')">1</button>
+      <button class="btn" onclick="appendToOutput('2')">2</button>
+      <button class="btn" onclick="appendToOutput('3')">3</button>
+      <button class="btn equals" onclick="calculate()">=</button>
+    </div>
+
+    <script>
+      let output = document.getElementById('output');
+
+function appendToOutput(value) {
+  output.value += value;
+}
+
+function clearOutput() {
+  output.value = '';
+}
+
+function calculate() {
+  let result = eval(output.value);
+  output.value = result;
+}
+      
+      
+    </script>
+  </body>
+</html>
